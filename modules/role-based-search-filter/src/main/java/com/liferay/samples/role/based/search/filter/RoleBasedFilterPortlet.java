@@ -1,5 +1,7 @@
 package com.liferay.samples.role.based.search.filter;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.module.configuration.ConfigurationException;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.util.Http;
@@ -11,6 +13,7 @@ import com.liferay.portal.search.web.portlet.shared.search.PortletSharedSearchRe
 import com.liferay.portal.search.web.portlet.shared.search.PortletSharedSearchResponse;
 
 import java.io.IOException;
+import java.util.Optional;
 
 import javax.portlet.Portlet;
 import javax.portlet.PortletException;
@@ -51,9 +54,14 @@ public class RoleBasedFilterPortlet extends MVCPortlet {
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
 
-		portletSharedSearchRequest.search(renderRequest);
+		_log.debug("Render role based portlet");
+		
+		PortletSharedSearchResponse portletSharedSearchResponse = portletSharedSearchRequest.search(renderRequest);
 
 		super.render(renderRequest, renderResponse);
+
+		_log.debug("Render role based portlet done");
+
 	}
 
 	protected String getPortletId(RenderRequest renderRequest) {
@@ -65,5 +73,6 @@ public class RoleBasedFilterPortlet extends MVCPortlet {
 
 	@Reference
 	protected PortletSharedSearchRequest portletSharedSearchRequest;
-	
+
+	private static final Log _log = LogFactoryUtil.getLog(RoleBasedFilterPortlet.class);
 }
