@@ -30,7 +30,7 @@ import org.osgi.service.component.annotations.Reference;
 			"com.liferay.portlet.css-class-wrapper=role-based-filter",
 			"com.liferay.portlet.display-category=category.search",
 			"com.liferay.portlet.icon=/icons/search.png",
-			"com.liferay.portlet.instanceable=false",
+			"com.liferay.portlet.instanceable=true",
 			"com.liferay.portlet.layout-cacheable=true",
 			"com.liferay.portlet.preferences-owned-by-group=true",
 			"com.liferay.portlet.private-request-attributes=false",
@@ -56,7 +56,7 @@ public class RoleBasedFilterPortlet extends MVCPortlet {
 
 		_log.debug("Render role based portlet");
 		
-		PortletSharedSearchResponse portletSharedSearchResponse = portletSharedSearchRequest.search(renderRequest);
+		portletSharedSearchRequest.search(renderRequest);
 
 		super.render(renderRequest, renderResponse);
 

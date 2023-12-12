@@ -27,10 +27,6 @@ public class RoleBasedFilterPortletSharedSearchContributor implements PortletSha
 	
 	private final static String KEY_ROLE = "ROLE";
 	
-	private final static String FILTERING_ROLE_PREFIX = "PROFIL_";
-
-	private final static String ROLE_QUERY_NAME_PREFIX = "roleQuery";
-	
 	@Override
 	public void contribute(
 		PortletSharedSearchSettings portletSharedSearchSettings) {
@@ -41,12 +37,6 @@ public class RoleBasedFilterPortletSharedSearchContributor implements PortletSha
 			User user = _portal.getUser(portletSharedSearchSettings.getRenderRequest());
 			SearchRequestBuilder searchRequestBuilder =
 					portletSharedSearchSettings.getSearchRequestBuilder();
-			user.getRoles().stream().filter(role -> role.getName().startsWith(FILTERING_ROLE_PREFIX)).forEach(role -> {
-				String name = role.getName();
-				
-			});
-			
-			//user.getRoles().stream().anyMatch(role -> { role.get})
 			
 			_assetCategoryLocalService.getChildCategories(VOCABULARY_ID).forEach(category -> {
 				_log.debug("Adding a rule for category " + category.getName());
